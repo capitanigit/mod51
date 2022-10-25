@@ -33,18 +33,12 @@ class BusinessContact(BaseContact):
         self.company = company
         self.business_phone = business_phone
 
-        self._label_length = len(f'{self.first_name} {self.last_name}')
-
     def __str__(self):
         return f'{self.first_name} {self.last_name} {self._label_length} {self.email} {self.phone} {self.position} {self.company} {self.business_phone}'
     
     def contact(self):
         return f'Wybieram numer {self.business_phone} i dzwonię do {self.first_name} {self.last_name}'
     
-
-    @property
-    def label_length(self):
-        return self._label_length
 
 def create_contacts(category, cards_number):
     temp_card_list = []
@@ -56,6 +50,7 @@ def create_contacts(category, cards_number):
         temp_card_list.append(card)
     return temp_card_list
 
+
 if __name__ == "__main__":
     cards_number = input("Liczba wizytówek: ")
     cat_number = input("Rodzaj wizytówki (1-BaseContact, 2-BusinessContact): ")
@@ -63,6 +58,4 @@ if __name__ == "__main__":
             cat_number = input("Niepoprawna wartość, podaj liczbę 1 lub 2: ")
     card_list = create_contacts(cat_number, cards_number)
     for i in card_list:
-        print(i.contact())
-    for i in card_list:
-        print(i)
+        print(f'{i}, ----> {i.contact()}')
